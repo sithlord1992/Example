@@ -4,24 +4,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using MiniJSON;
 
 public class SessionHandler : MonoBehaviour
 {
     #region Server Data Variables
 
+    [ReadOnly]
     public string current_date_time;
+    [ReadOnly]
     public string last_logged_date_time;
+    [ReadOnly]
     public string app_version;
+    [ReadOnly]
     public string s_audio_package_ver;
+    [ReadOnly]
     public string s_graphic_package_ver;
+    [ReadOnly]
     public string s_source_package_ver;
     #endregion
 
     #region Module Info Variables
 
+    [ReadOnly]
     public string l_audio_package_ver;
+    [ReadOnly]
     public string l_graphic_package_ver;
+    [ReadOnly]
     public string l_source_package_ver;
 
     #endregion
