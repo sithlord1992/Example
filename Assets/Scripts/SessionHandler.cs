@@ -4,17 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using MiniJSON;
 
 public class SessionHandler : MonoBehaviour
 {
     #region Variables
     public string current_date_time;
     public string last_logged_date_time;
-    string app_version;
+    public string app_version;
     
-
-
     #endregion
 
     #region Server Links for the Data
@@ -47,11 +44,15 @@ public class SessionHandler : MonoBehaviour
         }
         else
         {
-            JsonUtility.FromJsonOverwrite(serverResponse.downloadHandler.text, this);
+            string str = File.ReadAllText(Application.dataPath + "/Resources/ServerData.json");
+            JsonUtility.FromJsonOverwrite(str, this);
+
+            //JsonUtility.FromJsonOverwrite(serverResponse.downloadHandler.text, this);
+
             SessionLogger();
 
             //Checking Application Version here
-            if(VersionCheck(app_version, Application.version.ToString()).Equals(true))
+            if(VersionCheck(this.app_version, Application.version.ToString()).Equals(true))
             {
 
                 //Download the latest version here or corresponding update
