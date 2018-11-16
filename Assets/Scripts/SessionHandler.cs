@@ -9,10 +9,10 @@ using MiniJSON;
 public class SessionHandler : MonoBehaviour
 {
     #region Variables
-    public string date;
+    public string current_date_time;
+    public string last_logged_date_time;
     string app_version;
-
-
+    
 
 
     #endregion
@@ -48,11 +48,10 @@ public class SessionHandler : MonoBehaviour
         else
         {
             JsonUtility.FromJsonOverwrite(serverResponse.downloadHandler.text, this);
-           //_responseStr = Json.Deserialize(serverResponse.downloadHandler.text)as Dictionary<string,object>;
             SessionLogger();
 
             //Checking Application Version here
-            if (VersionCheck(_responseStr["app_version"].ToString(), Application.version.ToString()).Equals(true))
+            if(VersionCheck(app_version, Application.version.ToString()).Equals(true))
             {
 
                 //Download the latest version here or corresponding update
@@ -73,8 +72,8 @@ public class SessionHandler : MonoBehaviour
     {
         try
         {
-            var app_ver = new System.Version(_responseStr["app_version"].ToString());
-            var curr_app_ver = new System.Version(Application.version);
+            var app_ver = new System.Version(serverVersion);
+            var curr_app_ver = new System.Version(currentVersion);
 
             var result = app_ver.CompareTo(curr_app_ver);
             if (result > 0)
@@ -93,8 +92,6 @@ public class SessionHandler : MonoBehaviour
         {
             //Current server time
             //_dateTime = Convert.ToDateTime(_responseStr["current_date_time"].ToString());
-
         }
     }
-
 }
