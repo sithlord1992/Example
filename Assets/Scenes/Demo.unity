@@ -273,6 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2077165892}
   - component: {fileID: 2077165891}
+  - component: {fileID: 2077165893}
   m_Layer: 0
   m_Name: SessionHandler
   m_TagString: Untagged
@@ -287,11 +288,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077165890}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e81e80a5bba7604a9ca18048d97f20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  current_date_time: 
+  last_logged_date_time: 
+  app_version: 
+  s_audio_package_ver: 
+  s_graphic_package_ver: 
+  s_source_package_ver: 
+  l_audio_package_ver: 
+  l_graphic_package_ver: 
+  l_source_package_ver: 
 --- !u!4 &2077165892
 Transform:
   m_ObjectHideFlags: 0
@@ -306,3 +316,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2077165893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077165890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3529072c59d424cb9deb25a820aa80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

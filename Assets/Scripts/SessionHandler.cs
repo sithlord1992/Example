@@ -62,7 +62,7 @@ public class SessionHandler : MonoBehaviour
         UnityWebRequest serverResponse = UnityWebRequest.Get(link);
 
         yield return serverResponse.SendWebRequest();
-        
+
         if (serverResponse.isNetworkError || serverResponse.isHttpError)
         {
             Debug.Log(serverResponse.error);
@@ -70,16 +70,10 @@ public class SessionHandler : MonoBehaviour
         else
         {
             string s_str = File.ReadAllText(Application.dataPath + path);
-            JsonUtility.FromJsonOverwrite( s_str, this);
+            JsonUtility.FromJsonOverwrite(s_str, this);
 
             string l_str = File.ReadAllText(Application.dataPath + l_path);
             JsonUtility.FromJsonOverwrite(l_str, this);
-            
-            //JsonUtility.FromJsonOverwrite(serverResponse.downloadHandler.text, this);
-
-            SessionLogger();
-
-           
 
             //Check for every other update and download here
             StartCoroutine(ModuleObserver());
@@ -105,13 +99,18 @@ public class SessionHandler : MonoBehaviour
             else
                 return false;
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             Debug.LogException(e);
             return false;
         }
     }
 
-    void SessionLogger() {
+    /// <summary>
+    /// Log Current Session
+    /// </summary>
+    void SessionLogger()
+    {
         if (s_response != null)
         {
             //Current server time
@@ -119,11 +118,17 @@ public class SessionHandler : MonoBehaviour
         }
     }
 
-    IEnumerator ModuleObserver() {
+   /// <summary>
+   /// Observes Module Version Check Behaviour
+   /// </summary>
+   /// <returns></returns>
+   IEnumerator ModuleObserver()
+    {
         //Checking Application Version here
+        //Updating the local inventory also
+        //Download the latest version here or corresponding update
         if (VersionCheck(this.app_version, Application.version.ToString()).Equals(true))
         {
-            //Download the latest version here or corresponding update
             Debug.Log("Download the latest package available here!");
         }
         yield return new WaitForEndOfFrame();
@@ -132,21 +137,18 @@ public class SessionHandler : MonoBehaviour
         if (VersionCheck(this.s_audio_package_ver, this.l_audio_package_ver).Equals(true))
         {
             //Download the latest version here or corresponding update
-            //Updating the local inventory also
-            Debug.Log("Download the latest audio package ver "+ this.s_audio_package_ver + " available here!");
+            Debug.Log("Download the latest audio package ver " + this.s_audio_package_ver + " available here!");
         }
         yield return new WaitForEndOfFrame();
         if (VersionCheck(this.s_graphic_package_ver, this.l_graphic_package_ver).Equals(true))
         {
             //Download the latest version here or corresponding update
-            //Updating the local inventory also
-            Debug.Log("Download the latest graphics package ver "+ this.s_graphic_package_ver + " available here!");
+            Debug.Log("Download the latest graphics package ver " + this.s_graphic_package_ver + " available here!");
         }
         yield return new WaitForEndOfFrame();
         if (VersionCheck(this.s_source_package_ver, this.l_source_package_ver).Equals(true))
         {
             //Download the latest version here or corresponding update
-            //Updating the local inventory also
             Debug.Log("Download the latest source package ver " + this.s_source_package_ver + " available here!");
         }
         yield return new WaitForEndOfFrame();
